@@ -7,5 +7,6 @@ API_METHODS :{
     Email_id:"",
     AADHAR_CARD:""
  },
- LOCAL_LOGIN_KEY: "warehouseUser"
+ LOCAL_LOGIN_KEY: "warehouseUser",
+ LOCAL_TOKAN_KEY:"warehouseToken"
 }

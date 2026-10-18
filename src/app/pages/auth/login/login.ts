@@ -20,13 +20,13 @@ export class Login {
    router = inject(Router)
 
   onLogin() {
-  debugger
+  
      this.userService.LoginUser(this.loginObj).subscribe({
       next:(res:API_RESPONSE) =>{
         if(res.result){
-debugger
+
           localStorage.setItem(GLOBAL_CONSTANT.LOCAL_LOGIN_KEY,JSON.stringify(res.data.employee))
-          this.router.navigate(['admin/client-list'])
+          this.router.navigate(['/admin'])
         
         }else{
           alert(res.message)
