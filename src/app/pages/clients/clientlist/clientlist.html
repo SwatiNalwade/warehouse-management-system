@@ -1,1 +1,114 @@
-<p>clientlist works!</p>
+<section class="client-page" aria-labelledby="client-page-title">
+    <div class="client-page-heading">
+        <div>
+            <p class="client-eyebrow">WORKSPACE / CLIENTS</p>
+            <h2 id="client-page-title">Clients</h2>
+            <p class="client-subtitle">Manage your client directory and contact details.</p>
+        </div>
+        <button class="add-client-button" type="button" routerLink="/admin/client-form">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            <span>Add client</span>
+        </button>
+    </div>
+
+    <div class="client-toolbar">
+        <label class="client-search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <span class="visually-hidden">Search clients</span>
+            <input type="search" placeholder="Search clients...">
+        </label>
+        <div class="view-toggle" role="group" aria-label="Choose client view">
+            <button class="view-option is-selected" type="button" aria-pressed="true" (click)="isCardView = false">
+                <i class="fa-solid fa-table-list" aria-hidden="true"></i>
+                <span>Table</span>
+            </button>
+            <button class="view-option" type="button" aria-pressed="false" (click)="isCardView = true">
+                <i class="fa-solid fa-grip" aria-hidden="true"></i>
+                <span>Cards</span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- card view html -->
+    @if(isCardView){
+    <section class="client-view client-card-view" aria-label="Clients in card view">
+        @for(item of clientListData(); track item.id){
+        <article class="client-card">
+            <div class="client-card-heading">
+                <div class="client-card-identity">
+                    <span class="client-avatar client-avatar-large">C</span>
+                    <div>
+                        <h3>{{item.name}}</h3><span class="client-card-id">Client ID {{item.id}}</span>
+                    </div>
+                </div>
+                <button class="row-action" type="button" aria-label="More actions for {{item.name}}"><i
+                        class="fa-solid fa-ellipsis" aria-hidden="true"></i></button>
+            </div>
+            <dl class="client-details">
+                <div>
+                    <dt>Address</dt>
+                    <dd>{{item.address}}</dd>
+                </div>
+                <div>
+                    <dt>Mobile</dt>
+                    <dd>{{item.mobile}}</dd>
+                </div>
+                <div>
+                    <dt>Email</dt>
+                    <dd><a class="client-email" href="mailto:{{item.email}}">{{item.email}}</a></dd>
+                </div>
+                <div>
+                    <dt>GST No.</dt>
+                    <dd><span class="gst-value">{{item.gstNo}}</span></dd>
+                </div>
+            </dl>
+        </article>
+        }
+
+    </section>
+    }@else{
+    <!-- table view html -->
+
+    <section class="client-view client-table-view" aria-label="Clients in table view">
+        <div class="client-table-wrap">
+            <table class="client-table">
+                <thead>
+
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">CLIENT</th>
+                        <th scope="col">ADDRESS</th>
+                        <th scope="col">MOBILE</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">GST NO.</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for(item of clientListData(); track item.id){
+
+                    <tr>
+                        <td class="client-id" data-label="ID">{{item.id}}</td>
+                        <td data-label="Client"><span class="client-name">{{item.name}}</span></td>
+                        <td data-label="Address">{{item.address}}</td>
+                        <td data-label="Mobile">{{item.mobile}}</td>
+                        <td data-label="Email"><a class="client-email" href="mailto:{{item.email}}">{{item.email}}</a>
+                        </td>
+                        <td data-label="GST No."><span class="gst-value">{{item.gstNo}}</span></td>
+                        <td data-label="Actions"><button class="row-action" type="button"
+                                aria-label="More actions for {{item.name}}"><i class="fa-solid fa-ellipsis"
+                                    aria-hidden="true"></i></button></td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <p class="client-count">Showing 1 client</p>
+    </section>
+    }
+
+
+</section>

@@ -1,7 +1,9 @@
 export const GLOBAL_CONSTANT ={
 API_METHODS :{
   GET_ALL_CLIENTS : "GetAllCustomers",
-  LOGIN: "Login"
+  LOGIN: "Login",
+  DELETE_CLIENT : "deleteCustomer",
+  GET_CLIENT_BY_ID : "getCustomerById"
 },
  REGEX:{
     Email_id:"",
